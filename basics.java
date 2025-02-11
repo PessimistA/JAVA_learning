@@ -33,6 +33,28 @@ public class without_main {
 		else {
 			System.out.println("else bloğu doğrudur");
 		}
+		//switch_case
+		int sayı=2;
+		switch (sayı) {
+		case 1:
+			System.out.println("cevap 1");
+			break;
+		case 2:
+			System.out.println("cevap 2");
+			break;
+
+		default:
+			break;
+		}
+		//for döngüsü
+		for (int i = 0; i < number1; i++) {
+			System.out.printf("sayı %d'dir \n",i);//%d ile kullanabiliriz
+		}
+		//while döngüsü
+		while (number1>0) {
+			number1--;
+			System.out.printf("sayı %d'dir \n",number1);//%d ile kullanabiliriz
+		}
 	}
 	
 }
