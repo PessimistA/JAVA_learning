@@ -55,12 +55,12 @@ public class without_main {
 				return son;
 			} else {
 				System.out.printf("yeterli para bulunmamıştır");
-				return 0;
+				return bakiye;
 			}
 
 		} else {
 			System.out.printf("yeterli para bulunmamıştır");
-			return 0;
+			return bakiye;
 		}
 
 		
