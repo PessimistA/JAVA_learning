@@ -55,6 +55,37 @@ public class without_main {
 			number1--;
 			System.out.printf("sayı %d'dir \n",number1);//%d ile kullanabiliriz
 		}
+
+				//diziler 
+		int[] dizi = {1,2,3,4,5,6,7};
+		for (int i = 0; i < dizi.length; i++) {
+			int j = dizi[i];
+			System.out.printf("%d\n", j);
+		}
+		int[] sayilar =new int[5];//burada boyutu vermelisin
+		sayilar[1] = 1;
+		sayilar[2] = 2;
+		sayilar[3] = 3;
+		sayilar[4] = 4;
+		sayilar[0] = 5;
+		without_main ornek = new without_main();//nesne oluşturmak
+		ornek.nonstatic();//parametreyi buraya yaz int a gibi olan
+		// geriye değer döndürüyorsa
+		//int dönen_değer = ornek.nonstatic();
+		
+		
+		//static ile olan
+		static_one();// paramatre buraya yazılır
 	}
+	public void nonstatic() {
+		System.out.println("bu senden nesne oluşturmanı ister");
+		//mainde 
+		//without_main ornek = new without_main();
+		//ornek.nonstatic();
+	}
+	public static void static_one() {
+		System.out.println("bu direk yazar");
+	}
+	
 	
 }
