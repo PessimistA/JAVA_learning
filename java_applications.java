@@ -127,21 +127,40 @@ public class without_main {
 		
 	}
 	public static void uye_ol() {
+		boolean d_y=true;
 		Scanner alinan = new Scanner(System.in);
-		System.out.println("isminizi giriniz\n");
-		String isim = alinan.nextLine();
-		System.out.println("şifrenizi giriniz\n");
-		String sifre = alinan.nextLine();
-		kisi1.isim[kisi1.index]= isim;
-		kisi1.şifre[kisi1.index]=sifre;
-		kisi1.index++;
+		while (d_y) {
+			System.out.println("isminizi giriniz\n");
+			String isim = alinan.nextLine();
+			
+			int kullaniciIndex = -1;
+			for (int i=0; i <6; i++) {
+				if (isim.equals(kisi1.isim[i]) ) {
+					kullaniciIndex= i;
+					break;
+				}
+			}
+			if (kullaniciIndex==-1) {
+				System.out.println("şifrenizi giriniz\n");
+				String sifre = alinan.nextLine();
+				kisi1.isim[kisi1.index]= isim;
+				kisi1.şifre[kisi1.index]=sifre;
+				kisi1.index++;
+				d_y = false;
+			}
+			else {
+				System.out.println("bu kişi zaten bulunmakta yeni kişi eklemeyi deneyin");
+			}
+			
+		}
+
 		
 	}
 	public static void giris_yap() {
 		boolean d_y=true;
 		Scanner alinan = new Scanner(System.in);
 		while (d_y) {
-			System.out.println("isminizi giriniz\n");
+			System.out.println("giriş yapmak için isminizi giriniz\n");
 			String isim = alinan.nextLine();
 			int i=0;
 			int kullaniciIndex = -1;
@@ -157,7 +176,7 @@ public class without_main {
 				calıstır();
 				return;
 			}
-			System.out.println("şifrenizi giriniz\n");
+			System.out.println("giriş yapmak için şifrenizi giriniz\n");
 			Boolean d_y2=true;
 			for (int j = 3; j > 0; j--) {
 				String sifre = alinan.nextLine();
