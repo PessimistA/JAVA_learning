@@ -260,6 +260,9 @@ class notepadd{
 				if (e.isControlDown()&&e.getKeyCode()== KeyEvent.VK_F) {
 					findbttn.doClick();
 				}
+				if (e.isControlDown()&&e.getKeyCode()== KeyEvent.VK_S) {
+					savebttn.doClick();;
+				}
 			}
 		});
 		
