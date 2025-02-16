@@ -5,14 +5,23 @@ import java.awt.LayoutManager;
 import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.security.PublicKey;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -26,7 +35,7 @@ class notepadd{
 	static public JFrame fr ;
 	static public JTextPane tx;
 	static public JTextField ftx;
-	static public JButton bt;
+	static public JButton bt,sbt;
 	static public JPanel pn;
 	static public JMenu file,arrange,appearance,color;
 	static public JMenuItem savebttn,new_pagebttn,closebttn,findbttn,colorbttn,chartbttn, blackbttn,whitebttn,greenttn,bluebttn,redbttn;
@@ -37,6 +46,7 @@ class notepadd{
 		placement();
 		colors();
 		findt();
+		keys();
 	}
 	public void naming() {
 	    fr = new JFrame("Notepad"); 
@@ -60,6 +70,7 @@ class notepadd{
 	    
 	    pn =new JPanel(new BorderLayout());
 	    bt = new JButton("X");
+	    sbt= new JButton();
 	    mBar = new JMenuBar();
 
 	    file = new JMenu("File");
@@ -206,6 +217,53 @@ class notepadd{
 			});
 			
 		}
+	 public void save() {
+		JFileChooser file = new JFileChooser();
+		int result= file.showSaveDialog(null);
+		if (result==JFileChooser.APPROVE_OPTION) {
+			File files= file.getSelectedFile();//burada açılan pencerede seçileni alır
+	        try (BufferedWriter writer = new BufferedWriter(new FileWriter(files + ".txt"))) {//seçtiğinin sonuna ekler
+	            writer.write(tx.getText());  //oluşturulana tx in içeriğini kaydeder
+	            JOptionPane.showMessageDialog(null, "Dosya başarıyla kaydedildi!");
+	        } catch (IOException ex) {
+	            JOptionPane.showMessageDialog(null, "Dosya kaydedilirken hata oluştu!", "Hata", JOptionPane.ERROR_MESSAGE);
+	        }
+			
+		}
+	}
+	public void keys() {
+		savebttn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				save();
+			}
+		});
+		tx.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if (e.isControlDown()&&e.getKeyCode()== KeyEvent.VK_F) {
+					findbttn.doClick();
+				}
+			}
+		});
+		
+	}
 		 
 }
 
