@@ -297,7 +297,27 @@ class interface1{
 
 					lb42.setText(strbuild.toString());
 					lb52.setText(Integer.toBinaryString(number+3));
-					
+					String sayı =Integer.toBinaryString(number);
+					sayı= "0"+sayı;
+					String lastString="";
+					for (int i = 0; i < sayı.length()-1;i++) {
+						char rakam = sayı.charAt(i);
+						char rakam2= sayı.charAt(i+1);
+						if (rakam=='1'&&rakam2=='1') {
+							lastString="0"+lastString ;
+						} 
+						else if(rakam=='0'&&rakam2=='1'){
+							lastString="1"+lastString ;
+						}
+						else if(rakam=='1'&&rakam2=='0'){
+							lastString="1"+lastString ;
+						}
+						else if(rakam=='0'&&rakam2=='0'){
+							lastString="0"+lastString ;
+						}
+						
+					}
+					lb62.setText(lastString);
 					} catch (Exception e2) {
 					// TODO: handle exception
 				}
