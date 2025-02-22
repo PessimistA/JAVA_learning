@@ -201,3 +201,110 @@ public class without_main {
 	}
 
 }
+//basic hash_crack
+class hash_crack{
+	static String hashstString;
+	static String fileString="";
+	static String typeString="";
+	static void took() {
+		Scanner scnScanner= new Scanner(System.in);
+		System.out.println("please enter the hashString:");
+		hashstString= scnScanner.nextLine();
+		System.out.println("please enter the file location:");
+		fileString= scnScanner.nextLine();
+		System.out.println("please enter the type of the hash:");
+		hashstString= scnScanner.nextLine().trim();
+		if (hashstString==null) {
+			start_without_type();
+		}
+		else {
+			start_with_type();
+		}
+		
+	}
+	
+	static void start_with_type() {
+		try {
+			BufferedReader bfReader= new BufferedReader(new FileReader(fileString));
+			String line;
+			while ((line=bfReader.readLine())!=null) {
+				if (cracker(line).equals(hashstString)) {
+					System.out.println("Answer: "+line);
+					bfReader.close();
+					return;
+				}	
+			}
+			System.out.println("Answer is not found ");
+			bfReader.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	static String cracker(String line) {
+		try {
+			MessageDigest mDigest= MessageDigest.getInstance(typeString.toUpperCase());	
+			mDigest.update(line.getBytes());
+		    byte[] digest = mDigest.digest();//md5 byte sonucudur burası
+			StringBuilder str= new StringBuilder();
+	        for (byte b : digest) {//digest dizisindeki her elamanı buraya atar
+	            str.append(String.format("%02x", b));//hexa formuna çevirir
+	        }
+	        return str.toString();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new RuntimeException(e);
+		}
+	}
+	static void start_without_type() {
+		try {
+			BufferedReader bfReader= new BufferedReader(new FileReader(fileString));
+			String line;
+			while ((line=bfReader.readLine())!=null) {
+				if (cracker2(line).equals(hashstString)) {
+					System.out.println("Answer: "+line);
+					bfReader.close();
+					return;
+				}	
+			}
+			System.out.println("Answer is not found ");
+			bfReader.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	static String cracker2(String line) {
+		try {
+			int length= hashstString.length();
+			switch (length) {
+			case 32:
+				typeString= "MD5";
+				break;
+			case 40:
+				typeString= "SHA-1";
+				break;
+			case 64:
+				typeString= "Sha-256";
+				break;
+			case 128:
+				typeString= "SHA-512";
+				break;
+			default:
+				break;
+			}
+			MessageDigest mDigest= MessageDigest.getInstance(typeString);	
+			mDigest.update(line.getBytes());
+		    byte[] digest = mDigest.digest();//md5 byte sonucudur burası
+			StringBuilder str= new StringBuilder();
+	        for (byte b : digest) {//digest dizisindeki her elamanı buraya atar
+	            str.append(String.format("%02x", b));//hexa formuna çevirir
+	        }
+	        return str.toString();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new RuntimeException(e);
+		}
+	}
+	
+}
