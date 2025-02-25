@@ -94,12 +94,10 @@ class songs{
 	private String sng1,sng2,sng3;
 	
 	public songs(){
-		this.sng1= "SIUTK";
 		this.sng2="DH";
 		this.sng3= "M";
 	}
-	public songs(String sng1,String sng2,String sng3){
-		this.sng1= sng1;
+	public songs(String sng2,String sng3){
 		this.sng2= sng2;
 		this.sng3= sng3;
 	}
@@ -111,13 +109,20 @@ class songs{
 		System.out.println(sng2);
 		System.out.println(sng3);
 	}
+	public void setVariable(String sng) {
+		this.sng1=sng;
+	}
+	public String getVariable(){
+		return sng1;
+	}
 }
 
 public class ForLesson {
 	public static void main(String[] args) {
 		songs obj1= new songs();
 		obj1.start();
-		songs obj2= new songs("mfmt","E","RM");
+		songs obj2= new songs("E","RM");
+		obj2.setVariable("hello");
 		obj2.start();
 	}
 }
