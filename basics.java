@@ -89,3 +89,35 @@ public class without_main {
 	
 	
 }
+//
+class songs{
+	private String sng1,sng2,sng3;
+	
+	public songs(){
+		this.sng1= "SIUTK";
+		this.sng2="DH";
+		this.sng3= "M";
+	}
+	public songs(String sng1,String sng2,String sng3){
+		this.sng1= sng1;
+		this.sng2= sng2;
+		this.sng3= sng3;
+	}
+	public void start() {
+		print();
+	}
+	private void print() {
+		System.out.println(sng1);
+		System.out.println(sng2);
+		System.out.println(sng3);
+	}
+}
+
+public class ForLesson {
+	public static void main(String[] args) {
+		songs obj1= new songs();
+		obj1.start();
+		songs obj2= new songs("mfmt","E","RM");
+		obj2.start();
+	}
+}
