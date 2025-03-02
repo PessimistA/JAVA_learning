@@ -15,7 +15,7 @@ public class compare {
             	// If "more" is before the adjective, modify the next word (comparative)
                 wordStrings[i + 1] = compare_nouns.tagWord(wordStrings[i + 1]);
             } 
-            else if ("the".equals(wordStrings[i]) && i + 1 < wordStrings.length) {
+            else if ("the".equals(wordStrings[i]) && "adjective".equals(wordStrings[i+1]) && i + 1 < wordStrings.length) {
                 // Handling superlative case ("the biggest", etc.)
                 wordStrings[i + 1] = compare_nouns.tagWord2(wordStrings[i + 1]);
             }
