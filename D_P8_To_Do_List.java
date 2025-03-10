@@ -25,6 +25,7 @@ class list{
 	private JPanel panelout,panelin;
 	private JTextField jtxField;
     private JScrollPane scrollPane;
+    private int count=0;
 	public void attempt() {
 		jrFrame = new JFrame();
         jrFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +44,7 @@ class list{
 		panelin.setLayout(new GridLayout(1,3));
 		
 		scrollPane = new JScrollPane(panelout);
-		
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		jtxField = new JTextField();
 		jtxField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -60,8 +61,8 @@ class list{
 		headJLabel = new JLabel("TO DO LİST");
 		headJLabel.setFont(new Font("arial",Font.BOLD,20));
 		headJLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
 		
-        
 		Border border= BorderFactory.createLineBorder(Color.BLACK, 4, false);
 		headJLabel.setBorder(border);
 		panelout.setBorder(border);
@@ -74,19 +75,32 @@ class list{
 		panelin.add(jtxField);
 		panelin.add(deleteButton);
 		
-		panelout.add(panelin);
+		scrollPane.add(panelin);
 		
 		jrFrame.add(headJLabel);
-		jrFrame.add(panelout);
+		jrFrame.add(scrollPane);
 		jrFrame.add(plusButton);	
         plusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 add();
-        	    
+        	    count++;
             }
         });
         jrFrame.setVisible(true);
+    	    deleteButton.addActionListener(new ActionListener() {
+    			
+    			@Override
+    			public void actionPerformed(ActionEvent e) {
+    				// TODO Auto-generated method stub
+    		        panelout.remove(panelin);  
+    		        panelout.revalidate();     
+    		        panelout.repaint();  
+    			}
+    		});
+
+
+        
 	}
 	
 	private void add() {
@@ -116,7 +130,6 @@ class list{
 	    panelout.add(panelin);
 	    panelout.revalidate();
 	    panelout.repaint();      
-	    
 
 	}
 	
