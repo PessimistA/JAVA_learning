@@ -1,4 +1,3 @@
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,7 +18,7 @@ import javax.swing.border.Border;
 
 class frame{
     private JFrame fr;
-    private JTextField tField; 
+    private JTextField tField; // JTextField'i sınıf düzeyinde tanımladım
     private String text="";
 
     public frame() {
@@ -54,6 +53,8 @@ class frame{
 		    buttons[i] = new JButton(button_names[i]);
 		    buttons[i].setHorizontalAlignment(SwingConstants.CENTER);
 		    buttons[i].setFont(new Font("arial",Font.BOLD,20));
+		    buttons[i].setForeground(Color.white);
+		    buttons[i].setBackground(Color.BLACK);
 		    buttons[i].addActionListener(new ActionListener() {
 				
 				@Override
@@ -100,6 +101,8 @@ class frame{
 		Border border =BorderFactory.createLineBorder(Color.BLACK, 4, false);
 		txfieldField.setBorder(border);
 		txfieldField.setHorizontalAlignment(SwingConstants.RIGHT);
+		txfieldField.setBackground(Color.GRAY);
+		txfieldField.setForeground(Color.white);
 		txfieldField.setFont(new Font("arial",Font.BOLD,20));
 		return txfieldField;
 	}
