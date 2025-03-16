@@ -19,12 +19,11 @@ import javax.swing.border.Border;
 
 class frame{
     private JFrame fr;
-    private JTextField tField; // JTextField'i sınıf düzeyinde tanımladım
-    private String text;
+    private JTextField tField; 
+    private String text="";
 
     public frame() {
-        this.text = "";
-        make_frame();
+    	make_frame();
     }
 
     private void make_frame() {
@@ -38,10 +37,9 @@ class frame{
         tField.setPreferredSize(new Dimension(500, 150)); 
         fr.add(tField, BorderLayout.NORTH);
 
-        JPanel pnPanel = make_buttons();
-        fr.add(pnPanel, BorderLayout.CENTER);
+        fr.add(make_buttons(), BorderLayout.CENTER);
     }
-    
+
 	private JPanel make_buttons() {
 		JPanel pnJPanel=make_panel();
 		JButton[] buttons = new JButton[20];
@@ -72,7 +70,12 @@ class frame{
                         }
                     } 
                     else if(buttonText.equals("<-")) {
-                    	
+                    	StringBuilder all_textString = new StringBuilder(tField.getText());
+                    	if (all_textString.length() > 0) {
+                    	    all_textString.deleteCharAt(all_textString.length() - 1);
+                    	}
+                    	String text1= all_textString.toString();
+                    	tField.setText(text1);
                     }
                     else {
                         tField.setText(tField.getText() + buttonText);
@@ -102,17 +105,7 @@ class frame{
 	}
 }
 
-class items extends frame{
-    public items(String text) {
-        super();
-    }
-
-    protected char[] divide(String text) {
-        return text.toCharArray();
-    }
-}
-
-class calculate extends items{
+class calculate {
     private float result;
     private char[] divided;
     private int MAX;
@@ -122,8 +115,7 @@ class calculate extends items{
     private int top_operator = -1;
 
     public calculate(String text) {
-        super(text);
-        this.divided = divide(text);
+        this.divided =text.toCharArray();
         this.MAX = divided.length;
         this.num_stack = new float[MAX];
         this.operator_stack = new char[MAX];
@@ -172,7 +164,7 @@ class calculate extends items{
 	    return ch == '+' || ch == '-' || ch == '*' || ch == '/';
 	}
 
-	float calculate(float op1, float op2, char symbol) {
+	float calculate1(float op1, float op2, char symbol) {
 	    switch (symbol) {
 	    case '+': return op1 + op2;
 	    case '-': return op1 - op2;
@@ -208,7 +200,7 @@ class calculate extends items{
 	                float op2 = pop();
 	                float op1 = pop();
 	                char symbol = pop_operator();
-	                push(calculate(op1, op2, symbol));
+	                push(calculate1(op1, op2, symbol));
 	            }
 	            pop_operator(); // '(' karakterini yığından çıkar
 	        }
@@ -217,7 +209,7 @@ class calculate extends items{
 	                float op2 = pop();
 	                float op1 = pop();
 	                char symbol = pop_operator();
-	                push(calculate(op1, op2, symbol));
+	                push(calculate1(op1, op2, symbol));
 	            }
 	            push_operator(ch);
 	        }
@@ -227,7 +219,7 @@ class calculate extends items{
 	        float op2 = pop();
 	        float op1 = pop();
 	        char symbol = pop_operator();
-	        push(calculate(op1, op2, symbol));
+	        push(calculate1(op1, op2, symbol));
 	    }
 
 	    return pop(); 
@@ -237,9 +229,7 @@ class calculate extends items{
 
 public class math {
 	 public static void main(String[] args) {
-		frame frame1 = new frame();
+		 frame fr= new frame();
 		
 	}
 }
-
-//çift pencere açma hatası veriyor
